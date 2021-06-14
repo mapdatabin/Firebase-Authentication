@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="main">
+            <img width="120" src="./images/logo.svg" alt="">
+        
+            <div class="main_content">
+                <h1>PUBLISH YOUR PODCASTS <span>EVERYWHERE.</span></h1>
+                <p>Upload your audio to Pod with a single click. We’ll then distribute your podcast to Spotify, Apple Podcasts, Google Podcasts, Pocket Casts and more!</p>
+                    
+                <div class="input">
+                    <!-- <input type="email" placeholder="Email address"> -->
+                    <button onclick="authWithGoogle()">Login</button>
+                </div>
+
+                <div class="attribution">
+                    <img src="./images/spotify.svg" alt="">
+                    <img src="./images/apple-podcast.svg" alt="">
+                    <img src="./images/google-podcasts.svg" alt="">
+                    <img src="./images/pocket-casts.svg" alt="">
+                </div>            
+            </div>         
+        </div>      
+        
+        <div class="hero">
+            <img class="hero_image" src="./images/image-host.jpg" alt="">
+            <img id="dots" src="./images/bg-pattern-dots.svg" alt="">
+        </div>
+
+
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js"></script>     
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-firestore.js"></script>
+
+        <script>
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+              apiKey: "AIzaSyCpvKQijR1d0Zyar8PCdhth8-sraQqIit8",
+              authDomain: "spotify-api-1ead4.firebaseapp.com",
+              projectId: "spotify-api-1ead4",
+              storageBucket: "spotify-api-1ead4.appspot.com",
+              messagingSenderId: "38581874438",
+              appId: "1:38581874438:web:400ad8bd74c2526b42b887",
+              measurementId: "G-MCGT4SH9WR"
+            };
+            // Initialize Firebase
+            // let app = firebase.initializeApp(firebaseConfig); // look at object in console.log
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+            // console.log(app);
+            
+            function authWithGoogle(){
+                var provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(provider).then(function(result){
+                    var token = result.credential.accessToken;
+                    var user = result.user;
+                    window.location.href = "/dashboard.html"
+                });
+            }
+
+          </script>
+    
+    </div>
+</body>
+</html>
